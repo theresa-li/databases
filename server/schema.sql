@@ -3,11 +3,29 @@ CREATE DATABASE chat;
 USE chat;
 
 CREATE TABLE messages (
-  /* Describe your table here.*/
+  messagesId int auto_increment,
+  userId int,
+  roomId int,
+  messageIndex int,
+  primary key(messagesId)  
 );
 
-/* Create other tables and define schemas for them here! */
+CREATE TABLE users (
+  userId int auto_increment,
+  userName VARCHAR(40),
+  primary key(userId)
 
+);
+
+CREATE TABLE rooms (
+  roomId int auto_increment,
+  roomName VARCHAR(40) ,
+  primary key(roomId)
+
+);
+
+alter table messages add foreign key (roomId) references rooms(roomId);
+alter table messages add foreign key (userId) references users(userId);
 
 
 
